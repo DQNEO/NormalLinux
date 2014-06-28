@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     int i;
 
     if (argc < 2) {
-	fprintf(stderr, "%s: no arguments given\n", argv[0]);
+	fprintf(stderr, "%s: no arguments\n", argv[0]);
 	return 1;
     }
 
