@@ -10,11 +10,12 @@ int main(int argc, char *argv[])
 	return 1;
     }
 
+    char *path;
+    path = argv[1];
+
     DIR *dp;
     struct dirent *dent;
-    char *path;
 
-    path = argv[1];
     dp = opendir(path);
     if (dp == NULL) {
 	perror(path);
