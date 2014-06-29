@@ -39,4 +39,5 @@ static void do_ls(char *path)
     }
 
     printf("\n");
+    closedir(dp);
 }
