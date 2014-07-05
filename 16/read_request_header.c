@@ -21,10 +21,6 @@ int main()
     char buf[BUF_MAX_LEN];
     char *p;
 
-    char method[BUF_MAX_LEN];
-    char path[BUF_MAX_LEN];
-    char proto[BUF_MAX_LEN];
-
     fin = stdin;
 
     if (fgets(buf, BUF_MAX_LEN, fin) == NULL) {
