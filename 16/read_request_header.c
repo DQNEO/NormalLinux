@@ -55,10 +55,9 @@ int main()
 	return 1;
     }
 
-    struct http_request_header s_req;
     struct http_request_header *req;
-
-    req = read_request_line(buf, &s_req);
+    req = malloc(sizeof(struct http_request_header));
+    req = read_request_line(buf, req);
 
     printf("=== result ===\n");
     printf("method:%s\n", req->method);
