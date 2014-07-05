@@ -40,7 +40,8 @@ struct http_request_header * read_request_line(char *buf)
 
     //get proto
     p++;
-    req->proto = malloc(strlen(p) + 1);
+    buf = p;
+    req->proto = malloc(strlen(buf) + 1);
     strcpy(req->proto, p);
 
     return req;
