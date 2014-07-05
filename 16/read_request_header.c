@@ -50,17 +50,17 @@ struct http_request_header * read_request_line(char *buf)
 int main()
 {
     FILE *fin;
-    char buf[BUF_MAX_LEN];
+    char first_line[BUF_MAX_LEN];
 
     fin = stdin;
 
-    if (fgets(buf, BUF_MAX_LEN, fin) == NULL) {
+    if (fgets(first_line, BUF_MAX_LEN, fin) == NULL) {
 	perror("fgets");
 	return 1;
     }
 
     struct http_request_header *req;
-    req = read_request_line(buf);
+    req = read_request_line(first_line);
 
     printf("=== result ===\n");
     printf("method:%s\n", req->method);
