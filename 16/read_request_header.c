@@ -30,19 +30,17 @@ struct http_request_header * read_request_line(char *buf)
     strcpy(req->method, buf);
 
     //get path
-    p++;
-    buf = p;
-    p = strchr(p, ' ');
+    buf = p + 1;
+    p = strchr(buf, ' ');
     *p = '\0';
 
     req->path = malloc(strlen(buf) + 1);
     strcpy(req->path, buf);
 
     //get proto
-    p++;
-    buf = p;
+    buf = p + 1;
     req->proto = malloc(strlen(buf) + 1);
-    strcpy(req->proto, p);
+    strcpy(req->proto, buf);
 
     return req;
 }
