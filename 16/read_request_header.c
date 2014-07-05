@@ -25,14 +25,18 @@ int main()
 	return 1;
     }
 
+    //get method
     p = strchr(buf, ' ');
     *p = '\0';
     strcpy(method, buf);
 
+    //get path
     p++;
     p = strchr(p, ' ');
     *p = '\0';
     strcpy(path, buf + strlen(method) + 1);
+
+    //get proto
     p++;
     strcpy(proto, p);
 
