@@ -15,9 +15,12 @@ struct http_request_header {
     char *proto;
 };
 
-struct http_request_header * read_request_line(char *buf, struct http_request_header *req)
+struct http_request_header * read_request_line(char *buf)
 {
     char *p;
+
+    struct http_request_header *req;
+    req = malloc(sizeof(struct http_request_header));
 
     //get method
     p = strchr(buf, ' ');
@@ -56,8 +59,7 @@ int main()
     }
 
     struct http_request_header *req;
-    req = malloc(sizeof(struct http_request_header));
-    req = read_request_line(buf, req);
+    req = read_request_line(buf);
 
     printf("=== result ===\n");
     printf("method:%s\n", req->method);
