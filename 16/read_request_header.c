@@ -67,9 +67,10 @@ int main()
     printf("path:%s\n", req->path);
     printf("proto:%s\n", req->proto);
 
-    free(req);
     free(req->method);
     free(req->path);
     free(req->proto);
+    free(req);
+
     return 0;
 }
