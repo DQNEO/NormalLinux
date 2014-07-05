@@ -61,8 +61,8 @@ int main()
     req = read_request_line(buf, &s_req);
 
     printf("=== result ===\n");
-    printf("method:%s\n", s_req.method);
-    printf("path:%s\n", s_req.path);
-    printf("proto:%s\n", s_req.proto);
+    printf("method:%s\n", req->method);
+    printf("path:%s\n", req->path);
+    printf("proto:%s\n", req->proto);
     return 0;
 }
