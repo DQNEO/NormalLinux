@@ -5,8 +5,15 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define BUF_MAX_LEN 1024
+
+struct http_request_header {
+    char *method;
+    char *path;
+    char *proto;
+};
 
 int main()
 {
@@ -25,10 +32,14 @@ int main()
 	return 1;
     }
 
+    struct http_request_header *req;
+
     //get method
     p = strchr(buf, ' ');
     *p = '\0';
-    strcpy(method, buf);
+
+    req->method = malloc(strlen(buf) + 1);
+    strcpy(req->method, buf);
 
     //get path
     p++;
@@ -36,15 +47,18 @@ int main()
     tmp_path = p;
     p = strchr(p, ' ');
     *p = '\0';
-    strcpy(path, tmp_path);
+
+    req->path = malloc(strlen(tmp_path) + 1);
+    strcpy(req->path, tmp_path);
 
     //get proto
     p++;
-    strcpy(proto, p);
+    req->proto = malloc(strlen(p) + 1);
+    strcpy(req->proto, p);
 
     printf("=== result ===\n");
-    printf("method:%s\n", method);
-    printf("path:%s\n", path);
-    printf("proto:%s\n", proto);
+    printf("method:%s\n", req->method);
+    printf("path:%s\n", req->path);
+    printf("proto:%s\n", req->proto);
     return 0;
 }
