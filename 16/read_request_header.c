@@ -15,20 +15,9 @@ struct http_request_header {
     char *proto;
 };
 
-int main()
+struct http_request_header * read_request_line(char *buf, struct http_request_header *req)
 {
-    FILE *fin;
-    char buf[BUF_MAX_LEN];
     char *p;
-
-    fin = stdin;
-
-    if (fgets(buf, BUF_MAX_LEN, fin) == NULL) {
-	perror("fgets");
-	return 1;
-    }
-
-    struct http_request_header *req;
 
     //get method
     p = strchr(buf, ' ');
@@ -51,10 +40,29 @@ int main()
     p++;
     req->proto = malloc(strlen(p) + 1);
     strcpy(req->proto, p);
+    return req;
+}
+
+int main()
+{
+    FILE *fin;
+    char buf[BUF_MAX_LEN];
+
+    fin = stdin;
+
+    if (fgets(buf, BUF_MAX_LEN, fin) == NULL) {
+	perror("fgets");
+	return 1;
+    }
+
+    struct http_request_header s_req;
+    struct http_request_header *req;
+
+    req = read_request_line(buf, &s_req);
 
     printf("=== result ===\n");
-    printf("method:%s\n", req->method);
-    printf("path:%s\n", req->path);
-    printf("proto:%s\n", req->proto);
+    printf("method:%s\n", s_req.method);
+    printf("path:%s\n", s_req.path);
+    printf("proto:%s\n", s_req.proto);
     return 0;
 }
