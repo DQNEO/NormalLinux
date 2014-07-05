@@ -67,5 +67,8 @@ int main()
     printf("proto:%s\n", req->proto);
 
     free(req);
+    free(req->method);
+    free(req->path);
+    free(req->proto);
     return 0;
 }
