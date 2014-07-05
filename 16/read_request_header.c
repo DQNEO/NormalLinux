@@ -32,9 +32,11 @@ int main()
 
     //get path
     p++;
+    char *tmp_path;
+    tmp_path = p;
     p = strchr(p, ' ');
     *p = '\0';
-    strcpy(path, buf + strlen(method) + 1);
+    strcpy(path, tmp_path);
 
     //get proto
     p++;
