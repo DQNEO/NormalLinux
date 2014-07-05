@@ -31,13 +31,12 @@ struct http_request_header * read_request_line(char *buf)
 
     //get path
     p++;
-    char *tmp_path;
-    tmp_path = p;
+    buf = p;
     p = strchr(p, ' ');
     *p = '\0';
 
-    req->path = malloc(strlen(tmp_path) + 1);
-    strcpy(req->path, tmp_path);
+    req->path = malloc(strlen(buf) + 1);
+    strcpy(req->path, buf);
 
     //get proto
     p++;
