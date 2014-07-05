@@ -18,8 +18,8 @@ struct http_request_header {
 struct http_request_header * read_request_line(char *buf)
 {
     char *p;
-
     struct http_request_header *req;
+
     req = malloc(sizeof(struct http_request_header));
 
     //get method
@@ -43,6 +43,7 @@ struct http_request_header * read_request_line(char *buf)
     p++;
     req->proto = malloc(strlen(p) + 1);
     strcpy(req->proto, p);
+
     return req;
 }
 
