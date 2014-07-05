@@ -65,5 +65,7 @@ int main()
     printf("method:%s\n", req->method);
     printf("path:%s\n", req->path);
     printf("proto:%s\n", req->proto);
+
+    free(req);
     return 0;
 }
