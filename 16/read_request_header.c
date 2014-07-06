@@ -10,6 +10,36 @@
 
 #define BUF_MAX_LEN 1024
 
+struct http_request_header *read_request_line(char *buf);
+
+
+int main()
+{
+    FILE *fin;
+    char first_line[BUF_MAX_LEN];
+
+    fin = stdin;
+
+    if (fgets(first_line, BUF_MAX_LEN, fin) == NULL) {
+	perror("fgets");
+	return 1;
+    }
+
+    struct http_request_header *req;
+    req = read_request_line(first_line);
+
+    printf("=== result ===\n");
+    printf("method:%s\n", req->method);
+    printf("path:%s\n", req->path);
+    printf("proto:%s\n", req->proto);
+
+    free(req->method);
+    free(req->path);
+    free(req->proto);
+    free(req);
+
+    return 0;
+}
 
 struct http_request_header * read_request_line(char *buf)
 {
@@ -39,32 +69,4 @@ struct http_request_header * read_request_line(char *buf)
     strcpy(req->proto, buf);
 
     return req;
-}
-
-int main()
-{
-    FILE *fin;
-    char first_line[BUF_MAX_LEN];
-
-    fin = stdin;
-
-    if (fgets(first_line, BUF_MAX_LEN, fin) == NULL) {
-	perror("fgets");
-	return 1;
-    }
-
-    struct http_request_header *req;
-    req = read_request_line(first_line);
-
-    printf("=== result ===\n");
-    printf("method:%s\n", req->method);
-    printf("path:%s\n", req->path);
-    printf("proto:%s\n", req->proto);
-
-    free(req->method);
-    free(req->path);
-    free(req->proto);
-    free(req);
-
-    return 0;
 }
