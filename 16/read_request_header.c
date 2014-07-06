@@ -6,14 +6,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "request.h"
 
 #define BUF_MAX_LEN 1024
 
-struct http_request_header {
-    char *method;
-    char *path;
-    char *proto;
-};
 
 struct http_request_header * read_request_line(char *buf)
 {
